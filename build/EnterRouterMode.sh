@@ -6,20 +6,7 @@ sed -i '/#START_MOD/,/#END_MOD/d' /etc/rc.local
 
 cat <<'EOF' >> /etc/rc.local
 #START_MOD
-iface="apcli0"                                    
 
-# Drop all tcp traffic incomming on iface
-/bin/iptables -A INPUT -p tcp -i ${iface} -j DROP
-# Drop all udp traffic incomming on iface
-/bin/iptables -A INPUT -p udp -i ${iface} -j DROP                                         
-
-# Fetch IPv6 address on iface                                        
-ipv6_addr=`ifconfig ${iface} | grep inet6 | awk {'print $3'}`
-
-# No IPv6 filter is installed, so remove IPv6 address on iface
-if [ "${ipv6_addr}" != "" ]; then
-  /bin/ip -6 addr del "${ipv6_addr}" dev ${iface}
-fi
 #END_MOD
 EOF
 
@@ -73,10 +60,10 @@ fi
 echo $$ > /tmp/backup.pid
 
 SD_MOUNTPOINT=/data/UsbDisk1/Volume1
-STORE_DIR=/monitoreo
-BACKUP_DIR=/backup
+STORE_DIR=/sdcopies
+BACKUP_DIR=/fotobackup
 PHOTO_DIR="$STORE_DIR"/fotos
-CONFIG_DIR="$STORE_DIR"/no_tocar
+CONFIG_DIR="$STORE_DIR"/config
 MEDIA_REGEX=".*\.\(jpg\|gif\|png\|jpeg\|mov\|avi\|wav\|mp3\|aif\|wma\|wmv\|asx\|asf\|m4v\|mp4\|mpg\|3gp\|3g2\|crw\|cr2\|nef\|dng\|mdc\|orf\|sr2\|srf\)"
 
 # Check if an SD card is inserted (always mounted at the same mount point on the Rav Filehub)
@@ -166,9 +153,6 @@ if [ $sdcard -eq 1 -a $storedrive -eq 1 ];then
                         rm -rf "$target_dir"
                         mv -f "$incoming_dir" "$target_dir" >> /tmp/usb_add_info 2>&1
                         if  [ $? -eq 0 ]; then
-                                find "$SD_MOUNTPOINT"/DCIM -depth -type f -regex "$MEDIA_REGEX" -exec rm {} \;
-                                find "$SD_MOUNTPOINT"/DCIM -depth -type f -iname ".*" -exec rm {} \;
-                                find "$SD_MOUNTPOINT"/DCIM/* -depth -type d -exec rmdir {} \;
                                 echo "SD copy complete" >> /tmp/usb_add_info
                         else
                                 echo "Didn't finish moving files from incoming" >> /tmp/usb_add_info
@@ -222,8 +206,8 @@ if [ -e /tmp/backup.pid ]; then
 fi
 
 # Turn off swap if the store drive is removed
-STORE_DIR=/monitoreo
-CONFIG_DIR="$STORE_DIR"/no_tocar
+STORE_DIR=/sdcopies
+CONFIG_DIR="$STORE_DIR"/config
 
 # Check if a USB drive is attached which is initialize for storing monitoring data
 check_storedrive() {
@@ -249,8 +233,8 @@ EOF
 sed -i 's/SWAP=noswap/SWAP=swap/' /etc/firmware
 
 cat <<'EOF' > /etc/init.d/swap
-STORE_DIR=/monitoreo
-CONFIG_DIR="$STORE_DIR"/no_tocar
+STORE_DIR=/sdcopies
+CONFIG_DIR="$STORE_DIR"/config
 rm -f /tmp/swapinfo
 
 while read device mountpoint fstype remainder; do
