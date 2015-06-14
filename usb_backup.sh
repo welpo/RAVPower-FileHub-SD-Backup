@@ -26,10 +26,10 @@ fi
 echo $$ > /tmp/backup.pid
 
 SD_MOUNTPOINT=/data/UsbDisk1/Volume1
-STORE_DIR=/monitoreo
-BACKUP_DIR=/backup
+STORE_DIR=/sdcopies
+BACKUP_DIR=/fotobackup
 PHOTO_DIR="$STORE_DIR"/fotos
-CONFIG_DIR="$STORE_DIR"/no_tocar
+CONFIG_DIR="$STORE_DIR"/config
 MEDIA_REGEX=".*\.\(jpg\|gif\|png\|jpeg\|mov\|avi\|wav\|mp3\|aif\|wma\|wmv\|asx\|asf\|m4v\|mp4\|mpg\|3gp\|3g2\|crw\|cr2\|nef\|dng\|mdc\|orf\|sr2\|srf\)"
 
 # Check if an SD card is inserted (always mounted at the same mount point on the Rav Filehub)
@@ -119,9 +119,6 @@ if [ $sdcard -eq 1 -a $storedrive -eq 1 ];then
                         rm -rf "$target_dir"
                         mv -f "$incoming_dir" "$target_dir" >> /tmp/usb_add_info 2>&1
                         if  [ $? -eq 0 ]; then
-                                find "$SD_MOUNTPOINT"/DCIM -depth -type f -regex "$MEDIA_REGEX" -exec rm {} \;
-                                find "$SD_MOUNTPOINT"/DCIM -depth -type f -iname ".*" -exec rm {} \;
-                                find "$SD_MOUNTPOINT"/DCIM/* -depth -type d -exec rmdir {} \;
                                 echo "SD copy complete" >> /tmp/usb_add_info
                         else
                                 echo "Didn't finish moving files from incoming" >> /tmp/usb_add_info

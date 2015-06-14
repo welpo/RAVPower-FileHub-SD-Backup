@@ -4,8 +4,8 @@
 sed -i 's/SWAP=noswap/SWAP=swap/' /etc/firmware
 
 cat <<'EOF' > /etc/init.d/swap
-STORE_DIR=/monitoreo
-CONFIG_DIR="$STORE_DIR"/no_tocar
+STORE_DIR=/sdcopies
+CONFIG_DIR="$STORE_DIR"/config
 rm -f /tmp/swapinfo
 
 while read device mountpoint fstype remainder; do
