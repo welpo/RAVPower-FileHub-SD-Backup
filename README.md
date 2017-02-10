@@ -1,7 +1,7 @@
 RAVPower FileHub SD Card backup 
 ===============================
 
-This collection of scripts automate functionality for copying and backing up files using a [RAVPower Filehub](http://www.ravpower.com/ravpower-rp-wd01-filehub-3000mah-power-bank.html).
+This collection of scripts automate functionality for copying and backing up files using a [RAVPower Filehub](http://amzn.to/2kPs6y7).
 This version is a variant of the [original scripts](https://github.com/digidem/filehub-config) which suits better my requirements and is intended for traveling photographers that want to backup their SD cards to an portable harddisk.
 
 This guide is bare of many of the technical descriptions, so if you are interested in these checkout the original page.
