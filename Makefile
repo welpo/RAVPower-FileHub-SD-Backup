@@ -7,6 +7,6 @@ modules = \
 	swap.sh \
 	footer.sh
 
-build/EnterRouterMode.sh: ${modules}
+sdbackup/EnterRouterMode.sh: ${modules}
 	@rm -f $@
 	cat > $@ $^
