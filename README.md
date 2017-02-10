@@ -1,5 +1,8 @@
-RAVPower Automation
-===================
+RAVPower FileHub SD Card backup 
+===============================
+
+# 20170210 - Attention - I'm currently reworking the whole documentation to make it easier to read and correct
+
 
 This collection of scripts automate functionality for copying and backing up files using a [RAVPower Filehub](http://www.ravpower.com/ravpower-rp-wd01-filehub-3000mah-power-bank.html).
 
