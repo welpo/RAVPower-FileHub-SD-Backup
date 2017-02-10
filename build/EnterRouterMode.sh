@@ -6,20 +6,7 @@ sed -i '/#START_MOD/,/#END_MOD/d' /etc/rc.local
 
 cat <<'EOF' >> /etc/rc.local
 #START_MOD
-iface="apcli0"                                    
 
-# Drop all tcp traffic incomming on iface
-/bin/iptables -A INPUT -p tcp -i ${iface} -j DROP
-# Drop all udp traffic incomming on iface
-/bin/iptables -A INPUT -p udp -i ${iface} -j DROP                                         
-
-# Fetch IPv6 address on iface                                        
-ipv6_addr=`ifconfig ${iface} | grep inet6 | awk {'print $3'}`
-
-# No IPv6 filter is installed, so remove IPv6 address on iface
-if [ "${ipv6_addr}" != "" ]; then
-  /bin/ip -6 addr del "${ipv6_addr}" dev ${iface}
-fi
 #END_MOD
 EOF
 
@@ -73,11 +60,11 @@ fi
 echo $$ > /tmp/backup.pid
 
 SD_MOUNTPOINT=/data/UsbDisk1/Volume1
-STORE_DIR=/monitoreo
-BACKUP_DIR=/backup
+STORE_DIR=/sdcopies
+BACKUP_DIR=/fotobackup
 PHOTO_DIR="$STORE_DIR"/fotos
-CONFIG_DIR="$STORE_DIR"/no_tocar
-MEDIA_REGEX=".*\.\(jpg\|gif\|png\|jpeg\|mov\|avi\|wav\|mp3\|aif\|wma\|wmv\|asx\|asf\|m4v\|mp4\|mpg\|3gp\|3g2\|crw\|cr2\|nef\|dng\|mdc\|orf\|sr2\|srf\)"
+CONFIG_DIR="$STORE_DIR"/config
+MEDIA_REGEX=".*\.\(jpg\|gif\|png\|jpeg\|mov\|avi\|wav\|mp3\|aif\|wma\|wmv\|asx\|asf\|m4v\|mp4\|mpg\|3gp\|3g2\|crw\|cr2\|nef\|dng\|mdc\|orf\|sr2\|srf\|mts\)"
 
 # Check if an SD card is inserted (always mounted at the same mount point on the Rav Filehub)
 check_sdcard() {
@@ -143,42 +130,15 @@ backupdrive=$?
 # If both a valid store drive and SD card are mounted,
 # copy the SD card contents to the store drive
 if [ $sdcard -eq 1 -a $storedrive -eq 1 ];then
-        # Get the date of the latest file on the SD card
-        last_file="$SD_MOUNTPOINT"/DCIM/`ls -1c "$SD_MOUNTPOINT"/DCIM/ | tail -1`
-        last_file_date=`stat "$last_file" | grep Modify | sed -e 's/Modify: //' -e 's/[:| ]/_/g' | cut -d . -f 1`
         # Organize the photos in a folder for each SD card by UUID,
-        # organize in subfolders by date of latest photo being imported
-        target_dir="$store_mountpoint$PHOTO_DIR"/"$sd_uuid"/"$last_file_date"
-        incoming_dir="$store_mountpoint$PHOTO_DIR"/incoming/"$sd_uuid"
-        partial_dir="$store_mountpoint$PHOTO_DIR"/incoming/.partial
+        target_dir="$store_mountpoint$PHOTO_DIR"/"$sd_uuid"
         mkdir -p $target_dir
-        mkdir -p $incoming_dir
+		mkdir -p "$STORE_DIR"/log
         # Copy the files from the sd card to the target dir, 
-        # removing the source files once copied.
         # Uses filename and size to check for duplicates
-        echo "Copying SD card to $incoming_dir" >> /tmp/usb_add_info
-        rsync -vrm --size-only --log-file /tmp/rsync_log --partial-dir "$partial_dir" --exclude ".?*" "$SD_MOUNTPOINT"/DCIM/ "$incoming_dir"
-        if [ $? -eq 0 ]; then
-                # Only continue if the incoming_dir is not empty
-                rmdir "$incoming_dir"
-                if [ $? -eq 1 ]; then
-                        echo "Moving copied files to $target_dir" >> /tmp/usb_add_info
-                        rm -rf "$target_dir"
-                        mv -f "$incoming_dir" "$target_dir" >> /tmp/usb_add_info 2>&1
-                        if  [ $? -eq 0 ]; then
-                                find "$SD_MOUNTPOINT"/DCIM -depth -type f -regex "$MEDIA_REGEX" -exec rm {} \;
-                                find "$SD_MOUNTPOINT"/DCIM -depth -type f -iname ".*" -exec rm {} \;
-                                find "$SD_MOUNTPOINT"/DCIM/* -depth -type d -exec rmdir {} \;
-                                echo "SD copy complete" >> /tmp/usb_add_info
-                        else
-                                echo "Didn't finish moving files from incoming" >> /tmp/usb_add_info
-                        fi
-                else
-                        echo "No new files found on SD Card" >> /tmp/usb_add_info
-                fi
-        else
-                echo "SD copy was interrupted" >> /tmp/usb_add_info
-        fi
+        echo "$(date): Copying SD card to $target_dir" >> "$STORE_DIR"/log/usb_add_info
+        rsync -vrm --size-only --log-file /tmp/rsync_log --exclude ".?*" "$SD_MOUNTPOINT"/DCIM/ "$target_dir"/DCIM/
+        rsync -vrm --size-only --log-file /tmp/rsync_log --exclude ".?*" "$SD_MOUNTPOINT"/PRIVATE/ "$target_dir"/PRIVATE/
 fi
 
 # If both a valid store drive and a matching backup drive are attached,
@@ -187,12 +147,12 @@ if [ $storedrive -eq 1 -a $backupdrive -eq 1 -a "$backup_id" == "$store_id" ]; t
         source_dir="$store_mountpoint$STORE_DIR"
         target_dir="$backup_mountpoint$BACKUP_DIR"
         partial_dir="$store_mountpoint$PHOTO_DIR"/incoming/.partial
-        echo "Backing up data store to $target_dir" >> /tmp/usb_add_info
+        echo "Backing up data store to $target_dir" >> "$STORE_DIR"/log/usb_add_info
         rsync -vrm --size-only --delete-during --exclude ".?*" --partial-dir "$partial_dir" --exclude "swapfile" --log-file /tmp/rsync_log "$source_dir"/ "$target_dir"
         if  [ $? -eq 0 ]; then
-                echo "Backup complete" >> /tmp/usb_add_info
+                echo "$(date): Backup complete" >> "$STORE_DIR"/log/usb_add_info
         else
-                echo "Backup failed" >> /tmp/usb_add_info
+                echo "$(date): Backup failed" >> "$STORE_DIR"/log/usb_add_info
         fi
 fi
 
@@ -222,8 +182,8 @@ if [ -e /tmp/backup.pid ]; then
 fi
 
 # Turn off swap if the store drive is removed
-STORE_DIR=/monitoreo
-CONFIG_DIR="$STORE_DIR"/no_tocar
+STORE_DIR=/sdcopies
+CONFIG_DIR="$STORE_DIR"/config
 
 # Check if a USB drive is attached which is initialize for storing monitoring data
 check_storedrive() {
@@ -249,22 +209,22 @@ EOF
 sed -i 's/SWAP=noswap/SWAP=swap/' /etc/firmware
 
 cat <<'EOF' > /etc/init.d/swap
-STORE_DIR=/monitoreo
-CONFIG_DIR="$STORE_DIR"/no_tocar
-rm -f /tmp/swapinfo
+STORE_DIR=/sdcopies
+CONFIG_DIR="$STORE_DIR"/config
+#rm -f "$STORE_DIR"/log/swapinfo
 
 while read device mountpoint fstype remainder; do
     if [ ${device:0:7} == "/dev/sd" -a -e "$mountpoint$CONFIG_DIR" ];then
             swapfile="$mountpoint$CONFIG_DIR"/swapfile
             if [ ! -e "$swapfile" ]; then
-                dd if=/dev/zero of="$swapfile" bs=1024 count=65536
-                echo "Creating swapfile $swapfile" >> /tmp/swapinfo
+                dd if=/dev/zero of="$swapfile" bs=1024 count=131072
+                echo "$(date): Creating swapfile $swapfile" >> "$STORE_DIR"/log/swapinfo
             fi
             swapon "$swapfile" >> /tmp/swapinfo 2>&1
             if [ $? -eq 0 ]; then
-                echo "Turned on swap for $swapfile" >> /tmp/swapinfo
+                echo "$(date): Turned on swap for $swapfile" >> "$STORE_DIR"/log/swapinfo
             else
-                echo "There was an error turning on swap" >> /tmp/swapinfo
+                echo "$(date): There was an error turning on swap" >> "$STORE_DIR"/log/swapinfo
             fi
             exit 0
     fi
