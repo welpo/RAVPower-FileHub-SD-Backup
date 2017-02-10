@@ -118,6 +118,8 @@ Tip: You can backup and sync to a second drive in one go if you want - the FileH
 * Always turn off the FileHub before unplugging the drives and SD cards
 * Get yourself a small puch to store the Filehub, the drives, the USB-Hub and the cables - I use an old toilet bag.
 
+---
+
 ## Advanced - Customize your SD cards (optional)
 
 The script will automatically creates folders for each sd card with a random name. This works great, but if you want to recognize immediately what is in the folders on your drive you can customize the folder names quite easily.
@@ -127,6 +129,8 @@ The script will automatically creates folders for each sd card with a random nam
 * repeat for every sd card, but make sure that **every name is unique**
 
 That's it. Just make sure that you don't format the sd card and don't shoot more that 9999 Fotos. But I guess you want to keep the files on the card until you are safe at home right 😄 
+
+---
 
 ## Addendum - What is with the other files in the main folder?
 
