@@ -48,6 +48,7 @@ exit
 EOF
 
 cat <<'EOF' > /etc/udev/script/usb_backup.sh
+
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin
 
 # Kill an existing backup process if running 
@@ -72,7 +73,7 @@ check_sdcard() {
         if [ "$mountpoint" == "$SD_MOUNTPOINT" ]; then
                 # Get the UUID for the SD card. Create one if it doesn't already exist
                 local uuid_file
-                uuid_file="$SD_MOUNTPOINT"/.uuid
+                uuid_file="$SD_MOUNTPOINT"/sdname.txt
                 if [ -e $uuid_file ]; then
                         sd_uuid=`cat $uuid_file`
                 else

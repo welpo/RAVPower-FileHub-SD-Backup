@@ -1,110 +1,132 @@
 RAVPower FileHub SD Card backup 
 ===============================
 
-# 20170210 - Attention - I'm currently reworking the whole documentation to make it easier to read and correct
-
-
 This collection of scripts automate functionality for copying and backing up files using a [RAVPower Filehub](http://www.ravpower.com/ravpower-rp-wd01-filehub-3000mah-power-bank.html).
+This version is a variant of the [original scripts](https://github.com/digidem/filehub-config) which suits better my requirements and is intended for traveling photographers that want to backup their SD cards to an portable harddisk.
 
-- [x] Change the default password
-- [x] Block external network access
-- [x] Copy files from SD Card to USB drive automatically
-- [ ] Rename & organize files using EXIF data
-- [x] Backup / sync between two USB drives
-- [x] Add a swap file on a USB drive
-- [ ] Allow import of [ODK Collect](http://opendatakit.org/use/collect/) data from smart phones over USB
-- [ ] Allow import of [ODK Collect](http://opendatakit.org/use/collect/) data from smart phones over wifi
+This guide is bare of many of the technical descriptions, so if you are interested in these checkout the original page.
 
-How to hack the Filehub embedded Linux
---------------------------------------
+## Features
 
-The RAVPower Filehub runs embedded Linux, which is a cut-down version of Linux with a low memory footprint. Most of the filesystem is read-only apart from the contents of `/etc` and `/tmp`, but changes are not persisted across reboots.
+- Change the default password of the FileHub
+- Block external network access
+- Copy files from SD Card to USB drive automatically
+- Backup / sync to a secondary USB drives
 
-The easiest way to "hack" / modify the configuration of the embedded Linux is to create a script `EnterRouterMode.sh` on an SD card and put the card in the Filehub. The current firmware (2.000.004) will execute a script with this name with root permissions when the SD card is mounted.
+## How to hack the Filehub embedded Linux
 
-The `EnterRouterMode.sh` script modifies scripts within `/etc` and persists changes by running `/usr/sbin/etc_tools p`.
+The easiest way to "hack" / modify the configuration of the RAVPower Filehub is to create a script `EnterRouterMode.sh` on an SD card and put the card in the Filehub. The current firmware (2.000.004) will execute a script with this name when the Filehub starts.
 
-To use, download the EnterRouterMode.sh script, copy it to the top-level folder of an SD card, and insert it into the filehub device.
+These are the steps to add the backup functionality to your Filehub.
 
-Building from source
---------------------
 
-```shell
-git clone https://github.com/digidem/filehub-config.git
-make
-```
+### Step 1 - Copy Scripts to your computer
 
-Change the default password
----------------------------
+If you are familiar with Git/Github you can skig to the next section 😄 
 
-The default root password on RAVPower Filehub devices is 20080826. This is available on several online forums. Best change it. You can do this by telnet (username: root password: 20080826):
+If you don't know what Git/Github is and you came to this page by other means, just look for the **Clone or download** button and download the ZIP and unpack it in a folder.
 
-```shell
-telnet 10.10.10.254
-passwd
-```
+You will most likely only need the folder `changepassword` and `sdbackup`, so forget about the rest for now.
 
-or create a file `EnterRouterMode.sh` on an SD card and insert it into the Filehub:
+### Step 2 - Security Fix the FileHub 
 
-```shell
-#!/bin/sh
-passwd <<'EOF'
-newpassword
-newpassword
-EOF
-/usr/sbin/etc_tools p
-```
+The default root password on RAVPower Filehub devices is 20080826. This is available on several online forums. Best change it.
 
-Block external network access
------------------------------
+* Modify the script `EnterRouterMode.sh` in the Folder `changepassword` with your presonal password
+* Copy the script it to the top-level folder of an SD card, and insert it into the filehub device
+* Turn the FileHub on.
 
-By default it is possible to telnet into the Filehub from an external network if you know what you are doing. This script adds iptables rules to `/etc/rc.local` ([source](http://www.isartor.org/wiki/Making_the_RavPower_Filehub_RP-WD01_work_with_non-free_hotspots))
+The FileHub will flash the leds for a while and when you see everything is still turn off the device.
 
-Copy files from SD card automatically
--------------------------------------
+### Step 3 - Add SD Card Backup functionality to FileHub
 
-The script runs when any USB device is attached. It checks whether an SD card is present, and it looks for an external USB drive (can be a thumb drive or a USB disk drive) with a folder `/monitoreo/config` which contains an [rsync](http://rsync.samba.org/) binary built for embedded linux. There is not enough memory on the filehub device to store the rsync binary on the device itself.
+Even easier than step 2
 
-The script uses rsync to copy files, which should be resilient to interuption mid-copy and resume where it left off. Source files are removed from the SD card as they are copied to the external drive.
+* Copy the the script `EnterRouterMode.sh` in the Folder `sdbackup` to the top-level folder of an SD card, and insert it into the filehub device
+* Turn the FileHub on.
 
-A folder is created for each SD card, identified by a [UUID](http://en.wikipedia.org/wiki/Universally_unique_identifier). It would be ideal to use the serial number for an SD card for the UUID, but unfortunately it is not possible to access this. `udevadm info -a -p  $(udevadm info -q path -n /dev/sda) | grep -m 1 "ATTRS{serial}" | cut -d'"' -f2` returns the serial number for the card reader, rather than the SD card. Instead we generate a UUID using `cat /proc/sys/kernel/random/uuid` and store that on the SD card. Bear in mind if an SD card is re-formatted in the camera then this UUID will be lost, so the card will appear as a new card next time it is inserted. Using a UUID allows for transfers to be interupted and resumed later.
+The FileHub will flash the leds for a while and when you see everything is still turn off the device.
 
-If more than 9999 photos are taken with a camera, filenames will be reused. Similarly if an SD card is used in a different camera, filenames will be repeated. This would lead to overwriting files if we just stored all photos from each SD card in a single folder. Instead we create a subfolder for each import. Ideally this would be named with the date of the import, but the clock on the RavPower device cannot be relied upon without internet access. Instead we use the date of the most recent photo on the SD Card as the name of the subfolder.
 
-When the SD card or USB drive is removed, we kill the rsync process, otherwise it hangs around.
+### Step 4 - Prepare primary backup drive
 
-Backup between two USB hard drives
-----------------------------------
+Make sure your backup drive is formated in a way that makes it easy for the FileHub and your computer to read it. I use exFAT as I am platform agnostic. Once your ready:
 
-If a second drive is attached with a folder "Backup" then an automatic backup process will begin. Each backup drive is linked to the original drive via the original drive serial number. e.g. if you have two drives with original files and one backup drive for each, it will not backup to the wrong drive because it will detect the serial. The link is created the first time you create the backup, by writing a file ".backup_id" to the backup folder.
+* create a folder in the top-lever folder of the drive called `sdcopies``
+* create two folders inside `sdcopies` called `config` and `fotos``
+* copy the file `rsync` (which you can find in the project folder `tools`) to `sdcopies/config`
 
-At this stage older versions and deleted files are not kept. The backup drive is an exact mirror of the original drive. Backups are created via rsync with the following command:
+Your structure should look like this:
 
 ```sh
-rsync -vrm --size-only --delete-during --exclude ".?*" --partial-dir "$partial_dir" --exclude "swapfile" --log-file /tmp/rsync_log "$source_dir"/ "$target_dir"
+sdcopies
+  |__config
+  |   |___rsync
+  |
+  |__fotos
+
 ```
 
-Comments and suggestions for the rsync options are most welcome!
+### Step 5 - Prepare your secondary backup drive (optional)
 
-Swap file
----------
+If you are paranoid like me, you want to make a second copy to another drive.
 
-The RavPower Filehub only has 28Mb of memory, and about 2Mb of free memory. Rsync needs around [100 bytes for each file](http://rsync.samba.org/FAQ.html#4). To avoid out of memory issues we create a 64Mb swapfile on the USB drive when it is connected. This appears to speed up rsync and *should* avoid memory issues. I have not yet tested with thousands of files.
+* create a folder in the top-lever folder of the drive called `fotobackup`
 
-Renaming with EXIF
-------------------
 
-I would like photo filenames to be unique, so we can use them as a UUID. The best way would be to read the EXIF capture date, and prepend that to the filename. Although it might be possible to do that with just the file creation date and time. To use EXIF we would need to cross-compile an EXIF utility for the MIPS architecture used in the RavPower.
+---
 
-ODK Collect Imports
--------------------
+## How to use it
 
-We are using [ODK Collect](http://opendatakit.org/use/collect/) for data collection. This Android app stores data in a folder on the phone storage, and allows for sending that info via a multi-part form submission. There are 3 options for getting that data onto the filehub:
+Your FileHub is now ready - here are some guides how to use it and what to look out for.
 
-1. Modify the [form submission code](https://code.google.com/p/opendatakit/source/browse/src/org/odk/collect/android/tasks/InstanceUploaderTask.java?repo=collect) in ODK collect so that instead of a multipart form upload, it uploads the form as an XML file to the WebDav server on the RavPower. The Ravpower can be configured so that the ODK server address will redirect locally when no internet connection is present.
+## Backup SD to usb drive
 
-2. Write a small CGI script that can run on the RavPower to accept a multi-part form submission (containing form XML and associated media/photos). It would need to rename the files with the form submission UUID. Could face memory and processing speed limitations.
+1. Make sure your filehub is charged and/or connected to a USB power plug (not a computer)
+2. Make sure your SD card is **not write protected**
+3. Insert your SD card into the FileHub
+4. Plug in USB drive and wait a couple of seconds
+5. Turn on FileHub
+6. FileHub copies the sd card ... wait until none of the leds flashes for 1 minute
+7. Turn off FileHub
 
-3. Transfer the data via a USB connection. Android >4.0 only connects via MTP, which varies in implmentation in Android. The best seems to be [go-mtpfs](https://github.com/hanwen/go-mtpfs) which would need to be cross-compiled with GO for MIPS archetecture, which seems is possible. All libraries would need to be statically linked. This is potentially the most reliable solution.
+You can now continue to use the SD card and the FileHub will only copy the new files the next time you backup your SD card.
 
- 
+You are free to format the sd card If you did not choose to create custom sd card names. The Filehub will recognize the card as a new one and create a new folder for it.
+
+## Backup usb drive to secondary backup drive
+
+You will need a powered USB Hub for this functionality. There are plenty out there, but I recommend the **[Anker Ultra Slim 4 Port - Including Power Adapter](http://amzn.to/2kttmG8)**. It's very compact and it can be powered via Micro-USB, which means you can power it with a brick or a batterypack.
+
+PS: You will need to buy the version with the power brick to get the Micro-USB port - the solo version doesn't include it.
+
+1. Make sure your filehub is charged and/or connected to a USB power plug (not a computer)
+2. Connect the powered USB Hub to the FileHub
+3. Connect both USB Drives to the Hub
+5. Turn on FileHub
+6. FileHub syncs the two USB Drives ... wait until none of the leds flashes for 1 minute
+7. Turn off FileHub
+
+Tip: You can backup and sync to a second drive in one go if you want - the FileHub will copy the files to the first drive first and then make the second copy.
+
+## Some Tips
+
+* Make sure you give the Filehub enough time - even though it's reasonably fast, it can take hours for a full 32gig card
+* Always turn off the FileHub before unplugging the drives and SD cards
+* Get yourself a small puch to store the Filehub, the drives, the USB-Hub and the cables - I use an old toilet bag.
+
+## Advanced - Customize your SD cards (optional)
+
+The script will automatically creates folders for each sd card with a random name. This works great, but if you want to recognize immediately what is in the folders on your drive you can customize the folder names quite easily.
+
+* create a textfile on each SD card called `sdname.txt`
+* enter the name of the folder in the first line - e.g. `sandisk32gig01`
+* repeat for every sd card, but make sure that **every name is unique**
+
+That's it. Just make sure that you don't format the sd card and don't shoot more that 9999 Fotos. But I guess you want to keep the files on the card until you are safe at home right 😄 
+
+## Addendum - What is with the other files in the main folder?
+
+The files in the folder are the modules that can be made into the combined script you find in the folder `sdcopies` - they are separated to make them easier to read.
+
+If you know what you are doing, you can change the folder names and add some functionality ... but on your own risk - and I guess if you know was a makefile is than you are knowlegable enough and I wish you good luck.
