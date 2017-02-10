@@ -12,6 +12,9 @@ This guide is bare of many of the technical descriptions, so if you are interest
 - Block external network access
 - Copy files from SD Card to USB drive automatically
 - Backup / sync to a secondary USB drives
+- Custom SD card folder names (advanced)
+
+---
 
 ## How to hack the Filehub embedded Linux
 
@@ -20,7 +23,7 @@ The easiest way to "hack" / modify the configuration of the RAVPower Filehub is 
 These are the steps to add the backup functionality to your Filehub.
 
 
-### Step 1 - Copy Scripts to your computer
+#### Step 1 - Copy Scripts to your computer
 
 If you are familiar with Git/Github you can skig to the next section 😄 
 
@@ -28,7 +31,7 @@ If you don't know what Git/Github is and you came to this page by other means, j
 
 You will most likely only need the folder `changepassword` and `sdbackup`, so forget about the rest for now.
 
-### Step 2 - Security Fix the FileHub 
+#### Step 2 - Security Fix the FileHub 
 
 The default root password on RAVPower Filehub devices is 20080826. This is available on several online forums. Best change it.
 
@@ -38,7 +41,7 @@ The default root password on RAVPower Filehub devices is 20080826. This is avail
 
 The FileHub will flash the leds for a while and when you see everything is still turn off the device.
 
-### Step 3 - Add SD Card Backup functionality to FileHub
+#### Step 3 - Add SD Card Backup functionality to FileHub
 
 Even easier than step 2
 
@@ -48,7 +51,7 @@ Even easier than step 2
 The FileHub will flash the leds for a while and when you see everything is still turn off the device.
 
 
-### Step 4 - Prepare primary backup drive
+#### Step 4 - Prepare primary backup drive
 
 Make sure your backup drive is formated in a way that makes it easy for the FileHub and your computer to read it. I use exFAT as I am platform agnostic. Once your ready:
 
@@ -67,7 +70,7 @@ sdcopies
 
 ```
 
-### Step 5 - Prepare your secondary backup drive (optional)
+#### Step 5 - Prepare your secondary backup drive (optional)
 
 If you are paranoid like me, you want to make a second copy to another drive.
 
@@ -80,7 +83,7 @@ If you are paranoid like me, you want to make a second copy to another drive.
 
 Your FileHub is now ready - here are some guides how to use it and what to look out for.
 
-## Backup SD to usb drive
+#### Backup SD to usb drive
 
 1. Make sure your filehub is charged and/or connected to a USB power plug (not a computer)
 2. Make sure your SD card is **not write protected**
@@ -94,7 +97,7 @@ You can now continue to use the SD card and the FileHub will only copy the new f
 
 You are free to format the sd card If you did not choose to create custom sd card names. The Filehub will recognize the card as a new one and create a new folder for it.
 
-## Backup usb drive to secondary backup drive
+#### Backup usb drive to secondary backup drive
 
 You will need a powered USB Hub for this functionality. There are plenty out there, but I recommend the **[Anker Ultra Slim 4 Port - Including Power Adapter](http://amzn.to/2kttmG8)**. It's very compact and it can be powered via Micro-USB, which means you can power it with a brick or a batterypack.
 
@@ -109,7 +112,7 @@ PS: You will need to buy the version with the power brick to get the Micro-USB p
 
 Tip: You can backup and sync to a second drive in one go if you want - the FileHub will copy the files to the first drive first and then make the second copy.
 
-## Some Tips
+#### Some Tips
 
 * Make sure you give the Filehub enough time - even though it's reasonably fast, it can take hours for a full 32gig card
 * Always turn off the FileHub before unplugging the drives and SD cards
