@@ -104,8 +104,8 @@ if [ $sdcard -eq 1 -a $storedrive -eq 1 ];then
         # Copy the files from the sd card to the target dir, 
         # Uses filename and size to check for duplicates
         echo "$(date): Copying SD card to $target_dir" >> "$STORE_DIR"/log/usb_add_info
-        rsync -vrm --size-only --log-file /tmp/rsync_log --exclude ".?*" "$SD_MOUNTPOINT"/DCIM/ "$target_dir"/DCIM/
-        rsync -vrm --size-only --log-file /tmp/rsync_log --exclude ".?*" "$SD_MOUNTPOINT"/PRIVATE/ "$target_dir"/PRIVATE/
+        rsync -vrmt -v --size-only --log-file "$store_mountpoint$PHOTO_DIR"/tmp/rsync_log --exclude ".?*" "$SD_MOUNTPOINT"/DCIM/ "$target_dir"/DCIM/
+        rsync -vrmt -v --size-only --log-file "$store_mountpoint$PHOTO_DIR"/tmp/rsync_log --exclude ".?*" "$SD_MOUNTPOINT"/PRIVATE/ "$target_dir"/PRIVATE/
 fi
 
 # If both a valid store drive and a matching backup drive are attached,
@@ -115,7 +115,7 @@ if [ $storedrive -eq 1 -a $backupdrive -eq 1 -a "$backup_id" == "$store_id" ]; t
         target_dir="$backup_mountpoint$BACKUP_DIR"
         partial_dir="$store_mountpoint$PHOTO_DIR"/incoming/.partial
         echo "Backing up data store to $target_dir" >> "$STORE_DIR"/log/usb_add_info
-        rsync -vrm --size-only --delete-during --exclude ".?*" --partial-dir "$partial_dir" --exclude "swapfile" --log-file /tmp/rsync_log "$source_dir"/ "$target_dir"
+        rsync -vrmt --size-only --delete-during --exclude ".?*" --partial-dir "$partial_dir" --exclude "swapfile" --log-file "$store_mountpoint$PHOTO_DIR"/tmp/rsync_log "$source_dir"/ "$target_dir"
         if  [ $? -eq 0 ]; then
                 echo "$(date): Backup complete" >> "$STORE_DIR"/log/usb_add_info
         else

@@ -14,6 +14,11 @@ This guide is bare of many of the technical descriptions, so if you are interest
 - Backup / sync to a secondary USB drives
 - Custom SD card folder names (advanced)
 
+## Caveats
+
+- This script is only tested with the WD01 Version of the Filehub - now discontinued. If you have a newer version use at your own discretion - let me know if it works
+- Filehub's is buggy in relation to timestamps - see manual fix below
+
 ---
 
 ## How to hack the Filehub embedded Linux
@@ -118,6 +123,20 @@ Tip: You can backup and sync to a second drive in one go if you want - the FileH
 * Always turn off the FileHub before unplugging the drives and SD cards
 * Get yourself a small puch to store the Filehub, the drives, the USB-Hub and the cables - I use an old toilet bag.
 
+
+#### Fixing timestamps of your backups
+
+If you want to import from the backups itself into Lightroom you will run into the problem that the dates of the files on the backup are wrong. Filehub doesn't allow rsync to transfer the original dates. This is not really a problem for Lightroom as the capture date is inside the file, but you will not know see before you import what date you are importing.
+
+You can fix that problem easily with a tool called "[Exiftool](https://sno.phy.queensu.ca/~phil/exiftool/index.html)" which is available for free for Mac and Windows.
+
+It's a command line tool with many options - but I will give you a shortcut here :)
+
+* Open the terminal / command prompt in the folder sdcopies/fotos
+* Enter `exiftool "-FileModifyDate<DateTimeOriginal” ./* -rv`
+
+Exiftool will read the original capture time from the files and modify the timestamp for you in all folders.
+
 ---
 
 ## Advanced - Customize your SD cards (optional)
@@ -136,4 +155,21 @@ That's it. Just make sure that you don't format the sd card and don't shoot more
 
 The files in the folder are the modules that can be made into the combined script you find in the folder `sdcopies` - they are separated to make them easier to read.
 
-If you know what you are doing, you can change the folder names and add some functionality ... but on your own risk - and I guess if you know was a makefile is than you are knowlegable enough and I wish you good luck.
+If you know what you are doing, you can change the folder names and add some functionality ... but on your own risk - and I guess if you know was a makefile is than you are knowledgeable enough and I wish you good luck.
+
+---
+
+## What about the tmp folder?
+
+In the latest version I included logging what is actually copied. You will find that information in the file rsync_log in the tmp folder. You can delete the file if it gets too big or send it too me if you run into problems.
+
+--
+
+## Changelog
+
+20171205 
+* Added logging to rsync
+* Updated documentation with instructions on how to fix the date issue manually
+
+20170201
+* First updated version with better documentation
