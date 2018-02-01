@@ -1,8 +1,10 @@
 RAVPower FileHub SD Card backup 
 ===============================
 
-This collection of scripts automate functionality for copying and backing up files using a [RAVPower Filehub](http://amzn.to/2kPs6y7).
-This version is a variant of the [original scripts](https://github.com/digidem/filehub-config) which suits better my requirements and is intended for traveling photographers that want to backup their SD cards to an portable harddisk.
+This collection of scripts automate functionality for copying and backing up files using a [RAVPower Filehub](http://amzn.to/2kPs6y7). Made for the WD01 Version of the Filehub but seems to work on WD02 and WD03 models as well - but I cannot test that.
+
+
+This version is a variant of the [original scripts](https://github.com/digidem/filehub-config) which suits better my requirements and is intended for traveling photographers that want to backup their SD cards to an portable harddrive.
 
 This guide is bare of many of the technical descriptions, so if you are interested in these checkout the original page.
 
@@ -69,7 +71,7 @@ Your structure should look like this:
 ```sh
 sdcopies
   |__config
-  |   |___rsync
+  |   |rsync
   |
   |__fotos
 

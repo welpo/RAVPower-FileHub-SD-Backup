@@ -1,0 +1,87 @@
+2012/01/01 03:01:50 [5694] building file list
+2012/01/01 03:01:50 [5694] done
+2012/01/01 03:01:50 [5694] delta-transmission disabled for local transfer or --whole-file
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/.": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] .d..t...... ./
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0139.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0140.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0141.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0142.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0143.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0144.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0145.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0146.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0147.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0148.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0149.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0150.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0151.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0152.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0153.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0154.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0155.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0156.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0157.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0158.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0159.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0160.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0161.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0162.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0163.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0164.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0165.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0178.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0179.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0180.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0181.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0182.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0183.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0184.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0185.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0186.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0187.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0188.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/141D7000/_D7K0189.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9139.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9140.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9141.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9142.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9143.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9144.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9145.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9146.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9147.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9148.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9149.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9150.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9151.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9152.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9153.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9154.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9155.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9156.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9157.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9158.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/142D5300/DSC_9159.NEF": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/144D7000": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/144D7000/_D7K5056.MOV": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/145D5300": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] rsync: failed to set times on "/data/UsbDisk2/Volume1/sdcopies/fotos/e77ba114-e367-4bab-a424-68d3f4a76f28/DCIM/145D5300/_DSC0033.MOV": Unknown error -89 (-89)
+2012/01/01 03:01:50 [5694] .d..t...... 141D7000/
+2012/01/01 03:01:50 [5694] .d..t...... 142D5300/
+2012/01/01 03:01:50 [5694] .d..t...... 144D7000/
+2012/01/01 03:01:50 [5694] .d..t...... 145D5300/
+2012/01/01 03:01:50 [5694] total: matches=0  hash_hits=0  false_alarms=0 data=0
+2012/01/01 03:01:50 [5694] sent 1,359 bytes  received 11,133 bytes  24,984.00 bytes/sec
+2012/01/01 03:01:50 [5694] total size is 1,386,303,549  speedup is 110,975.31
+2012/01/01 03:01:50 [5694] rsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1165) [sender=3.1.0]
+2012/01/01 03:01:50 [5697] building file list
+2012/01/01 03:01:50 [5697] rsync: change_dir "/data/UsbDisk1/Volume1/PRIVATE" failed: No such file or directory (2)
+2012/01/01 03:01:50 [5697] done
+2012/01/01 03:01:50 [5697] delta-transmission disabled for local transfer or --whole-file
+2012/01/01 03:01:50 [5697] total: matches=0  hash_hits=0  false_alarms=0 data=0
+2012/01/01 03:01:50 [5697] sent 18 bytes  received 79 bytes  194.00 bytes/sec
+2012/01/01 03:01:50 [5697] total size is 0  speedup is 0.00
+2012/01/01 03:01:50 [5697] rsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1165) [sender=3.1.0]
