@@ -161,9 +161,9 @@ If you know what you are doing, you can change the folder names and add some fun
 
 ---
 
-## What about the tmp folder?
+## What about the log folder?
 
-In the latest version I included logging what is actually copied. You will find that information in the file rsync_log in the tmp folder. You can delete the file if it gets too big or send it too me if you run into problems.
+I included logging what is actually copied. You will find that information in the file rsync_log and the stdout file in the log folder. You can delete the file if it gets too big or send it too me if you run into problems.
 
 --
 
