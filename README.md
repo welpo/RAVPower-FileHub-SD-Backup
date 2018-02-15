@@ -169,6 +169,10 @@ In the latest version I included logging what is actually copied. You will find 
 
 ## Changelog
 
+20180215
+* Better logging
+* include Sony Files and other changes - Thank you @dreamnid
+
 20171205 
 * Added logging to rsync
 * Updated documentation with instructions on how to fix the date issue manually
