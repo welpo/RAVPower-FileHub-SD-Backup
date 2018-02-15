@@ -133,7 +133,7 @@ backupdrive=$?
 if [ $sdcard -eq 1 -a $storedrive -eq 1 ];then
         # Organize the photos in a folder for each SD card by UUID,
         target_dir="$store_mountpoint$PHOTO_DIR"/"$sd_uuid"
-		log_dir="$store_mountpoint$STORE_DIR"/log
+	log_dir="$store_mountpoint$STORE_DIR"/log
         mkdir -p $target_dir
         mkdir -p $log_dir 
         # Copy the files from the sd card to the target dir, 
@@ -250,4 +250,4 @@ rm -- "$0"
 # /sbin/shutdown h
 
 # Telnet
-/usr/sbin/telnetd &
+#/usr/sbin/telnetd &
