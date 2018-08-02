@@ -1,10 +1,10 @@
-RAVPower FileHub SD Card backup 
+RAVPower FileHub SD Card backup
 ===============================
 
-This collection of scripts automate functionality for copying and backing up files using a [RAVPower Filehub](http://amzn.to/2kPs6y7). Made for the WD01 Version of the Filehub but seems to work on WD02 and WD03 models as well - but I cannot test that.
+This collection of scripts automate functionality for copying and backing up files using a [RAVPower Filehub](http://amzn.to/2kPs6y7). Made for the WD01 Version of the Filehub but seems to work on WD02 and WD03 models as well.
 
 
-This version is a variant of the [original scripts](https://github.com/digidem/filehub-config) which suits better my requirements and is intended for traveling photographers that want to backup their SD cards to an portable harddrive.
+This version is a variant of the [original scripts](https://github.com/digidem/filehub-config) which suits better my requirements and is intended for traveling photographers that want to backup their SD cards to a portable harddrive. This particular fork adds the ability to backup audio recordings from a Tascam DR-05 and other recorders that use the same folder structure.
 
 This guide is bare of many of the technical descriptions, so if you are interested in these checkout the original page.
 
@@ -32,13 +32,13 @@ These are the steps to add the backup functionality to your Filehub.
 
 #### Step 1 - Copy Scripts to your computer
 
-If you are familiar with Git/Github you can skig to the next section 😄 
+If you are familiar with Git/Github you can skig to the next section 😄
 
 If you don't know what Git/Github is and you came to this page by other means, just look for the **Clone or download** button and download the ZIP and unpack it in a folder.
 
 You will most likely only need the folder `changepassword` and `sdbackup`, so forget about the rest for now.
 
-#### Step 2 - Security Fix the FileHub 
+#### Step 2 - Security Fix the FileHub
 
 The default root password on RAVPower Filehub devices is 20080826. This is available on several online forums. Best change it.
 
@@ -149,7 +149,7 @@ The script will automatically creates folders for each sd card with a random nam
 * enter the name of the folder in the first line - e.g. `sandisk32gig01`
 * repeat for every sd card, but make sure that **every name is unique**
 
-That's it. Just make sure that you don't format the sd card and don't shoot more that 9999 Fotos. But I guess you want to keep the files on the card until you are safe at home right 😄 
+That's it. Just make sure that you don't format the sd card and don't shoot more that 9999 Fotos. But I guess you want to keep the files on the card until you are safe at home right 😄
 
 ---
 
@@ -173,7 +173,7 @@ I included logging what is actually copied. You will find that information in th
 * Better logging
 * include Sony Files and other changes - Thank you @dreamnid
 
-20171205 
+20171205
 * Added logging to rsync
 * Updated documentation with instructions on how to fix the date issue manually
 
