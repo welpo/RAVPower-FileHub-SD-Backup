@@ -60,10 +60,15 @@ The FileHub will flash the leds for a while and when you see everything is still
 
 #### Step 4 - Prepare primary backup drive
 
-Make sure your backup drive is formated in a way that makes it easy for the FileHub and your computer to read it. I use exFAT as I am platform agnostic. Once your ready:
+Make sure your backup drive is formated in a way that makes it easy for the FileHub and your computer to read it. I use exFAT as I am platform agnostic.
 
-* create a folder in the top-lever folder of the drive called `sdcopies``
-* create two folders inside `sdcopies` called `config` and `fotos``
+Once your ready, just copy the folder `sdcopies` as a top-level folder on your drive.
+
+
+Alternatively, you can do this manually:
+
+* create a folder in the top-level folder of the drive called `sdcopies`
+* create two folders inside `sdcopies` called `config` and `photos`
 * copy the file `rsync` (which you can find in the project folder `tools`) to `sdcopies/config`
 
 Your structure should look like this:
@@ -73,7 +78,7 @@ sdcopies
   |__config
   |   |rsync
   |
-  |__fotos
+  |__photos
 
 ```
 
@@ -81,7 +86,7 @@ sdcopies
 
 If you are paranoid like me, you want to make a second copy to another drive.
 
-* create a folder in the top-lever folder of the drive called `fotobackup`
+* create a folder in the top-lever folder of the drive called `PhotoBackup`
 
 
 ---
@@ -134,7 +139,7 @@ You can fix that problem easily with a tool called "[Exiftool](https://sno.phy.q
 
 It's a command line tool with many options - but I will give you a shortcut here :)
 
-* Open the terminal / command prompt in the folder sdcopies/fotos
+* Open the terminal / command prompt in the folder sdcopies/photos
 * Enter `exiftool "-FileModifyDate<DateTimeOriginal” ./* -rv`
 
 Exiftool will read the original capture time from the files and modify the timestamp for you in all folders.
@@ -149,7 +154,7 @@ The script will automatically creates folders for each sd card with a random nam
 * enter the name of the folder in the first line - e.g. `sandisk32gig01`
 * repeat for every sd card, but make sure that **every name is unique**
 
-That's it. Just make sure that you don't format the sd card and don't shoot more that 9999 Fotos. But I guess you want to keep the files on the card until you are safe at home right 😄
+That's it. Just make sure that you don't format the sd card. But I guess you want to keep the files on the card until you are safe at home, right? 😄
 
 ---
 

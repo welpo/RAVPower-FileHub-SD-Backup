@@ -51,7 +51,7 @@ cat <<'EOF' > /etc/udev/script/usb_backup.sh
 
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin
 
-# Kill an existing backup process if running 
+# Kill an existing backup process if running
 # (this can happen if you insert two disks one after the other)
 if [ -e /tmp/backup.pid ]; then
         kill $(cat /tmp/backup.pid)
@@ -62,8 +62,8 @@ echo $$ > /tmp/backup.pid
 
 SD_MOUNTPOINT=/data/UsbDisk1/Volume1
 STORE_DIR=/sdcopies
-BACKUP_DIR=/fotobackup
-PHOTO_DIR="$STORE_DIR"/fotos
+BACKUP_DIR=/PhotoBackup
+PHOTO_DIR="$STORE_DIR"/photos
 CONFIG_DIR="$STORE_DIR"/config
 #MEDIA_REGEX=".*\.\(jpg\|gif\|png\|jpeg\|mov\|avi\|wav\|mp3\|aif\|wma\|wmv\|asx\|asf\|m4v\|mp4\|mpg\|3gp\|3g2\|crw\|cr2\|nef\|dng\|mdc\|orf\|sr2\|srf\|mts\|rw2\)"
 
@@ -135,12 +135,13 @@ if [ $sdcard -eq 1 -a $storedrive -eq 1 ];then
         target_dir="$store_mountpoint$PHOTO_DIR"/"$sd_uuid"
 	log_dir="$store_mountpoint$STORE_DIR"/log
         mkdir -p $target_dir
-        mkdir -p $log_dir 
-        # Copy the files from the sd card to the target dir, 
+        mkdir -p $log_dir
+        # Copy the files from the sd card to the target dir,
         # Uses filename and size to check for duplicates
         echo "$(date): Copying SD card $SD_MOUNTPOINT to $target_dir" >> "$log_dir"/usb_add_info
         rsync -vrm --size-only --log-file $log_dir/rsync_log --exclude ".?*" \
                 $SD_MOUNTPOINT/DCIM \
+                $SD_MOUNTPOINT/MUSIC \
                 $SD_MOUNTPOINT/PRIVATE \
                 $SD_MOUNTPOINT/MISC \
                 $SD_MOUNTPOINT/MP_ROOT \
@@ -180,7 +181,7 @@ chmod +x /etc/udev/script/usb_backup.sh
 sed -i '/#START_MOD/,/#END_MOD/d' /etc/udev/script/remove_usb_storage.sh
 
 # Add call to usb backup script after drive mounts
-cat <<'EOF' >> /etc/udev/script/remove_usb_storage.sh 
+cat <<'EOF' >> /etc/udev/script/remove_usb_storage.sh
 #START_MOD
 # Kill the rsync process if the USB drive or SD card is removed
 if [ -e /tmp/backup.pid ]; then
@@ -211,7 +212,7 @@ fi
 
 #END_MOD
 EOF
-# Add a swapfile on the data store drive 
+# Add a swapfile on the data store drive
 # (rsync needs this for large file copies)
 
 sed -i 's/SWAP=noswap/SWAP=swap/' /etc/firmware
