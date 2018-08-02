@@ -62,7 +62,7 @@ The FileHub will flash the leds for a while and when you see everything is still
 
 Make sure your backup drive is formated in a way that makes it easy for the FileHub and your computer to read it. I use exFAT as I am platform agnostic.
 
-Once your ready, just copy the folder `sdcopies` as a top-level folder on your drive.
+Once ready, just copy the folder `sdcopies` as a top-level folder on your drive.
 
 
 Alternatively, you can do this manually:
@@ -128,7 +128,7 @@ Tip: You can backup and sync to a second drive in one go if you want - the FileH
 
 * Make sure you give the Filehub enough time - even though it's reasonably fast, it can take hours for a full 32gig card
 * Always turn off the FileHub before unplugging the drives and SD cards
-* Get yourself a small puch to store the Filehub, the drives, the USB-Hub and the cables - I use an old toilet bag.
+* Get yourself a small pouch/box/case to store the Filehub, the drives, the USB-Hub and the cables. I use a Pelican 1060 case where I also store other photo-travelling stuff (spare batteries, USB charger for the batteries, SD cards…)
 
 
 #### Fixing timestamps of your backups
